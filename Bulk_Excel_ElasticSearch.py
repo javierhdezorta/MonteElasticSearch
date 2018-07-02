@@ -673,7 +673,41 @@ def bulk_indices(Numero_de_Prospecto, Contrato, Producto, Subproducto,
         elasticsearch_opera(doc_renovaciones, doc_trazabilidad,Numero_de_Prospecto)
 
 
-def elasticsearch_opera(doc_renovaciones, doc_trazabilidad, Numero_de_Prospecto):
+def elasticsearch_opera(doc_renovaciones, doc_trazabilidad, Numero_de_Prospecto,Contrato, Producto, Subproducto,
+                                                   No_de_pagos_0, Tasa_0, Monto_0, Pago_0, NR_0,
+                                                   Sub_Producto_a_ofertar, Ingreso, Monto_oferta_automatica_1,
+                                                   No_de_pagos_oferta_automatica_1
+                                                   , Tasa_oferta_automatica_1, Pago_oferta_automatica_1,
+                                                   Monto_oferta_automatica_2, No_de_pagos_oferta_automatica_2,
+                                                   Tasa_oferta_automatica_2, Pago_oferta_automatica_2,
+                                                   Monto_oferta_automatica_3
+                                                   , No_de_pagos_oferta_automatica_3, Tasa_oferta_automatica_3,
+                                                   Pago_oferta_automatica_3, Monto_oferta_automatica_4,
+                                                   No_de_pagos_oferta_automatica_4, Tasa_oferta_automatica_4,
+                                                   Pago_oferta_automatica_4
+                                                   , Monto_oferta_automatica_maxima_1,
+                                                   No_de_pagos_oferta_automatica_maxima_1,
+                                                   Tasa_oferta_automatica_maxima_1,
+                                                   Pago_oferta_automatica_maxima_1,
+                                                   Monto_oferta_automatica_maxima_2,
+                                                   No_de_pagos_oferta_automatica_maxima_2
+                                                   , Tasa_oferta_automatica_maxima_2,
+                                                   Pago_oferta_automatica_maxima_2,
+                                                   Monto_oferta_automatica_maxima_3,
+                                                   No_de_pagos_oferta_automatica_maxima_3,
+                                                   Tasa_oferta_automatica_maxima_3
+                                                   , Pago_oferta_automatica_maxima_3,
+                                                   Monto_oferta_automatica_maxima_4,
+                                                   No_de_pagos_oferta_automatica_maxima_4,
+                                                   Tasa_oferta_automatica_maxima_4, Pago_oferta_automatica_maxima_4
+                                                   , ITA_Tasa_1, ITA_Tasa_2, ITA_Tasa_3, ITA_Tasa_4,
+                                                   ITA_No_de_pagos_1, ITA_No_de_pagos_2, ITA_No_de_pagos_3,
+                                                   ITA_No_de_pagos_4, NR_1, Flag_Ruta, fecha_envio,
+                                                   SAP_estatus_cliente, SAP_subestatus_cliente
+                                                   , Estatus_seguimientoCartera, Folio, Etapa_cliente,
+                                                   Estatus_cliente, Folio_Movilidad, Subetapa_cliente,
+                                                   Pantalla_cliente, Macroproceso_cliente, Flag_prospecto,
+                                                   SAP_telefono1, SAP_telefono2, id, ITA_Monto):
     '''elastic = Elasticsearch(['https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243'],
                             http_auth=('epvazquez', '12345Nmp'))  # conexion a server'''
     elastic = Elasticsearch() #conexion local
