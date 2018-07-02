@@ -1,0 +1,214 @@
+POST _scripts/H18H19_DatosProspecto
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+   "query": {
+     
+    "bool": {
+      "must": [
+        {
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "SAP_estatus_cliente": 37
+                }
+              }
+            ],
+            "must_not": [
+              {
+                "match": {
+                  "SAP_subestatus_cliente": {
+                    "query": "(40) OR (41)"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "match": {
+                              "etapa_cliente": "contratado"
+                            }
+                          },
+                          {
+                            "match": {
+                              "etapa_cliente": "solicitado"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "match": {
+                        "estatus_cliente": "rechazado"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "bool": {
+                        "must_not": [
+                          {
+                            "exists": {
+                              "field": "folio_BPM"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "match": {
+                              "estatus_seguimientoCartera": "terminado"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "idCliente": "{{id_Cliente}}"
+                }
+              },
+              {
+                "match": {
+                  "id_campania": "{{id_campania}}"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  
+   }
+,
+ "script_fields": {
+   "Cliente":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['idCliente'].value"
+     }
+   },
+   
+   "Nombre_1":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['SAP_nombre_cliente_1.keyword'].value"
+     }
+   },
+   "Nombre_2":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['SAP_nombre_cliente_2.keyword'].value"
+     }
+   },
+    "ApellidoPaterno":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['SAP_apellidoPaterno_cliente.keyword'].value"
+     }
+   },
+   "ApellidoMaterno":{
+     "script": {
+       "lang":"painless",
+       "source":"doc['SAP_apellidoMaterno_cliente.keyword'].value"
+     }
+   },
+   "subProductoOferta": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subProductoOferta.keyword'].value"
+     }
+   },
+   "Contrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['contrato'].value"
+     }
+   },
+   "numeroContrato": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['numeroContrato'].value"
+     }
+   },
+   "macroprocesoCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['macroproceso_cliente.keyword'].value"
+     }
+   },
+   "subetapaCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['subetapa_cliente.keyword'].value"
+     }
+   },
+   "pantallaCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['pantalla_cliente.keyword'].value"
+     }
+   },
+   "etapaCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['etapa_cliente.keyword'].value"
+     }
+   },
+   "folio_BPM": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_BPM'].value"
+     }
+   },
+   "folio_movilidad": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['folio_movilidad'].value"
+     }
+   },
+   "numero_solicitud": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['numero_solicitud'].value"
+     }
+   },
+   "estatusCliente": {
+     "script": {
+       "lang": "painless",
+      "source": "doc['estatus_cliente.keyword'].value"
+     }
+   }
+   
+ }
+}
+  }
+}

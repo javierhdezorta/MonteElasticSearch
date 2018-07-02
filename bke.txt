@@ -1,0 +1,74 @@
+GET renovacionestopup_test2/prospeccion/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+            "query": "idCliente:29 AND estatus_cliente:Sin Folio AND CRM_ciudad:Mexico AND (folio_BPM:4 OR folio_movilidad:1)"
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "range": {
+                  "fecha_ultima_gestion_cliente": {
+                    "gte": "2019",
+                    "lte": "2029",
+                    "format": "dd/MM/yyyy||yyyy"
+                  }
+                }
+              },
+              {
+                "range": {
+                  "fecha_prospeccion": {
+                    "gte": "2013",
+                    "lte": "2029",
+                    "format": "dd/MM/yyyy||yyyy"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+#####
+
+"query": {
+       "bool" : {
+           "must" : {
+               "script" : {
+                   "script" : {
+                       "source" : "for(int i=0;i< params.idClienteArray.length; i++){if(params.idClienteArray[i] == doc['idCliente'].value ){return true;}}",
+                       "lang"   : "painless",
+                       "params" : {
+                           "idClienteArray":[3202014,3202003,3202003,3202002,3202001,3202005]
+                       }
+                   }
+               }
+           },
+           "filter": [
+             { "match": { "folioBPM":"1" } },
+             { "match": { "folioMovilidad":"2" } }
+             ]
+   }
+ }
+
+
+
+
+ ###
+
+
+
+ "(idCliente:123)(riesgos_producto:Credito Simple S/G)(riesgos_subProducto:OMEGA_M)(folio_BPM:4 OR folio_movilidad:1)(SAP_nombre_cliente_1:NombreCliente)(SAP_nombre_cliente_2:NombreCliente)(SAP_apellidoMaterno_cliente:ApellidoMaternoCliente)(SAP_apellidoPaterno_cliente:ApellidoPaternoCliente)(etapa_cliente:Solicitud)(subetapa_cliente:Analisis)(estatus_cliente:Sin Folio)"
