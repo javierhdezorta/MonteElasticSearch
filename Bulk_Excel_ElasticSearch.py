@@ -625,7 +625,7 @@ def bulk_indices(Numero_de_Prospecto, Contrato, Producto, Subproducto,
                  Pantalla_cliente, Macroproceso_cliente, Flag_prospecto,
                  SAP_telefono1, SAP_telefono2, id, ITA_Monto):
 
-<<<<<<< HEAD
+
     if Numero_de_Prospecto != None:
         doc_renovaciones = build_doc_renovacionestopup(Numero_de_Prospecto, Contrato, Producto, Subproducto,
                                                        No_de_pagos_0, Tasa_0, Monto_0, Pago_0, NR_0,
@@ -679,7 +679,7 @@ def elasticsearch_opera(doc_renovaciones, doc_trazabilidad, Numero_de_Prospecto)
     elastic = Elasticsearch() #conexion local
     elastic.delete_by_query(index="renovacionestopup_test", doc_type='prospeccion', body={"query":{"match": {"idCliente": f"{Numero_de_Prospecto}"}}})
     elastic.delete_by_query(index="trazabilidad_cliente_test", doc_type='renovaciones', body={"query":{"match": {"idCliente": f"{Numero_de_Prospecto}"}}})
-=======
+
     doc_renovaciones = build_doc_renovacionestopup(Numero_de_Prospecto, Contrato, Producto, Subproducto,
                                                    No_de_pagos_0, Tasa_0, Monto_0, Pago_0, NR_0,
                                                    Sub_Producto_a_ofertar, Ingreso, Monto_oferta_automatica_1,
@@ -724,7 +724,7 @@ def elasticsearch_opera(doc_renovaciones, doc_trazabilidad, Numero_de_Prospecto)
                                                       Flag_prospecto, id)
 
     elastic = Elasticsearch() #conexion local
->>>>>>> 4302f469202ae6832c3d7b278d70c0335595e986
+
 
     print(doc_trazabilidad)
     print(doc_renovaciones)
