@@ -545,7 +545,6 @@ def bulk_indices(idCliente, id, value_null, Sap_estatus_cliente,
 
 def elasticsearch_opera(doc_renovaciones, doc_trazabilidad):
     elastic = Elasticsearch()  # conexion local
-    # elastic = Elasticsearch(['https://0f015a81ee05196b255efee81a128f42.us-east-1.aws.found.io:9243'],http_auth=('epvazquez', '12345Nmp'))
 
     elastic = Elasticsearch() #conexion local
 
